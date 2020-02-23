@@ -1,0 +1,66 @@
+ {% extends "base.html" %}
+
+ {% block jambotron %}
+    <div class="container">
+       <div class="jumbotron">
+        <div class="container">
+          <div class='col-sm-6'>
+       <h3>Search</h3>
+         {% csrf_token %}
+               <input type="text" id="search" name="search"/>  <p id="search-results"> </p>
+             </div>
+          <div class='col-sm-6'>
+             <marquee scrollamount="7"scrolldelay="5"direction="right">
+              <img src="/static/static/img/angle.jpg"width="300"height="250" />
+              <img src="/static/static/img/beautiful.jpg"width="300"height="250" />
+              <img src="/static/static/img/art1.jpg"width="300"height="250" />
+              <img src="/static/static/img/Romantical-Love.jpg"width="300"height="250" />
+            </marquee>
+          </div>
+      </div>
+      </div>
+    </div>
+ {% endblock%}
+
+
+
+<!--{% if error %}
+        <p style="color: red;">Please submit a search term.</p>
+    {% endif %}
+    <form action="/artimages/search/" method="GET">
+        <input type="text" name="search_text">
+        <input type="submit" value="search">
+    </form--> 
+
+          
+
+{% block content %}
+
+{% load static %}
+<!--h2> Language is: {{ language }} </h2>
+
+<h2>  Session Language is: {{ session_language }} </h2-->
+
+{% if articles.count > 0 %}
+{% for article in articles %} 
+
+  <div class="box" style="float: left; text-align: left; width:290Px; height:400Px;">
+
+    <table width="170" cellspacing="0" cellpadding="0" border="0" align="left">
+      <h2><a href="/image/get/{{ article.id }}/"> {{ article.title }}</a></h2>
+       <img src="/static/media/{{ article.picture }}" height="230" width="200"/>
+        <p>{{ article.body }}</p>
+    <p>{{ article.likes }} people liked this arts.</p>
+    
+     </table>
+  
+  </div>
+  {% endfor %}
+
+  {% else %}
+  <p> None to show! </p>
+
+  {% endif %}
+
+{% endblock %}
+

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+	<!--div class="col-sm-12" style="text-align: center"> -->
+	<div class="box" style="float: center; text-align: left; width:900Px; height:500Px;">
+
+    <table width="500" cellspacing="0" cellpadding="0" border="1" align="left">
+      
+      
+	<h2> Register </h2>
+	 <form action="/accounts/register/" method="POST"> {% csrf_token %}
+	  <p> {{ form.as_p}} 
+	  	<input type="submit" value="Register"></p>
+	  </form>
+	  <div class='col-sm-10' >
+             <marquee scrollamount="7"scrolldelay="5"direction="right">
+              <img src="/static/static/img/woman.jpg"width="300"height="250" />
+              <img src="/static/static/img/Romantic.jpg"width="300"height="250" />
+              <img src="/static/static/img/art1.jpg"width="300"height="250" />
+              <img src="/static/static/img/Romantical-Love.jpg"width="300"height="250" />
+            </marquee>
+          </div>
+	 </table>
+	  </div>
+{% endblock %}	  

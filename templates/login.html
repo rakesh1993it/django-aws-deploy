@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<center>
+ <div class="box" style="float: center; text-align: left; width:700Px; height:500Px;">
+
+    <table width="500" cellspacing="0" cellpadding="0" border="1" align="left">
+      
+      <div class='col-sm-8' >
+             <marquee scrollamount="7"scrolldelay="5"direction="right">
+              <img src="/static/static/img/nice-art.jpg"width="300"height="250" />
+              <img src="/static/static/img/beautiful.jpg"width="300"height="250" />
+              <img src="/static/static/img/art1.jpg"width="300"height="250" />
+              <img src="/static/static/img/Romantical-Love.jpg"width="300"height="250" />
+            </marquee>
+          </div>
+    <h2> Login </h2>  
+  {% if form.errors %}
+ <p class="error"> sorry, that's not valid username or password </p>
+ {% endif %}
+<form action="/accounts/auth/" method="post">{% csrf_token %}
+	<dl>
+      <dt>Username:
+      <dd><input type=text name=username>
+      <dt>Password:
+      <dd><input type=password name=password>
+      <dd><input type=submit value=Login>
+    </dl>
+    <p>If you have no account plz register <a href="/accounts/register/">Click </a> here to register</p>
+
+   </form>
+</table>
+
+ </div> </center>
+
+
+{% endblock %}
+
+
+
+ 

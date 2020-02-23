@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+
+{% block jambotron %}
+    <div class="container">
+       <div class="jumbotron">
+        <!--marquee behavior="alternate"scrollamount="6"scrolldelay="5"direction="left"><font size="+6"><b><i>WELL COME</i></b></font></marquee>
+        <div class="container">
+
+          <!--div class='col-sm-6'-->
+       <h3>Search</h3>
+         {% csrf_token %}
+               <input type="text" id="search" name="search"/>  <p id="search-results"> </p>
+             
+          <!--div class='col-sm-6'-->
+             <marquee scrollamount="7"scrolldelay="5"direction="right" onmouseover="this.stop()"onmouseout="this.start()">
+              <img src="/static/static/img/angle.jpg"width="500"height="350" />
+              <img src="/static/static/img/beautiful.jpg"width="500"height="350" />
+              <img src="/static/static/img/art1.jpg"width="500"height="350" />
+              <img src="/static/static/img/Romantical-Love.jpg"width="500"height="350" />
+            </marquee>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+ {% endblock%}
+
+{% block content %}
+
+
+
+    
+    <div class="row">
+        <div class="col-sm-3">
+          <h2>Google's News</h2>
+          <p>Google Inc.'s self-driving cars can maneuver adroitly in traffic, but they have had less success handling regulatory congestion.
+
+Google was a key backer of a 2012 California law that required state officials to devise rules for so-called autonomous vehicles by Jan. 1. More than two months after that deadline, a draft has yet to appear, meaning the regulations are unlikely to take effect until the end of this year.
+ </p>
+         
+        </div>
+        <div class="col-sm-3">
+          <h2>Women Art</h2>
+          <p><img src="/static/static/img/woman.jpg" class="img-responsive"></p>
+          
+       </div>
+        <div class="col-sm-3">
+          <h2>Social</h2>
+          <p>An industrial drumbeat is picking up in European aircraft factories as Airbus borrows a new range of car making strategies to keep pace with record demand.
+
+        Technologically, modern jetliners have more in common with a custom-built Formula 1 than a family saloo</p>
+         
+          <p><a href="https://twitter.com/share" class="twitter-share-button" data-via="rakesh190493it">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+          </p>
+
+          <p><div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div> </p>
+
+        </div>
+        
+        <div class="col-sm-3">
+            <h1>Pre-Order</h1>
+            <p>For this course, Please Pre-Order</p>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="Y7ZLPB4VFE5NS">
+                <input type="hidden" name="on0" value="Course">
+                <select class="form-control" name="os0">
+                        <option value="Basic">Basic $99.00 USD</option>
+                        <option value="Basic+">Basic+ $149.00 USD</option>
+                        <option value="premium">premium $199.00 USD</option>
+                </select> 
+                </br>
+                </br>
+                <input type="hidden" name="currency_code" value="USD"></br>
+                <input type="submit"  class="btn btn-success btn-lg btn-block">
+            </form>
+        
+        </div>
+    </div>
+      
+   
+{% endblock%} 
+            
+       

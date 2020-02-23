@@ -1,0 +1,15 @@
+
+{% block content %}
+
+{% if articles.count > 0 %}
+<ul class='search_result'>
+	<li class='search_result_close'><a href="#">X</a></li>
+{% for article in articles %}
+<li><a href="/artimages/get/{{ article.id }}/">{{ article.title }}</a></li>
+{% endfor %}
+</ul>
+{% else %}
+<p>None to show!</p>
+{% endif %}
+ 
+{% endblock %}

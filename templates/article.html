@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static %}
+
+
+{% if article.picture %}
+<div class="box" style="float: center; text-align: left; width:500Px; height:700Px;">
+
+    <table width="170" cellspacing="0" cellpadding="0" border="0" align="left">
+      <h2><a href="/image/get/{{ article.id }}/"> {{ article.title }}</a></h2>
+       <img src="/static/media/{{ article.picture }}" height="500" width="500"/> </table>
+        <p>{{ article.body }}</p>
+    <p>{{ article.likes }} people liked this arts.</p>
+     <!--p> rate it {{ article.ratings }} <a href="/artimages/rating/{{ article.id }}"> set rating </a> </p-->
+     <p><a href="/artimages/like/{{ article.id }}"> Like </a></p>
+
+     <p><a href="https://twitter.com/share" class="twitter-share-button" data-via="rakesh190493it">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+          </p>
+    
+<p><a href="/artimages/buy_article/{{ article.id }}"> <input type="submit" name=buy value="Buy"></a></p>
+     
+{% endif %}
+  
+  <h2>Comment </h2>
+  {% for c in article.comment_set.all %}
+  <p> {{ c.name }}: {{ c.body }}</p>
+  {% endfor %}
+
+<p><a href="/artimages/add_comment/{{ article.id }}"> Add Comment </a></p>
+
+</div>
+  {% endblock %}  
+
+ 
