@@ -28,5 +28,10 @@ urlpatterns = [
     # path(r'docs', schema_view),
     # path(r'api', include(router.urls)),
     path('create/', views.create),
+    path('hotel/', views.hotelViewsets.as_view()),
+    path('upload/', views.FileUploadView.as_view()),
  
 ]
+if settings.DEBUG: 
+        urlpatterns += static(settings.MEDIA_URL, 
+                              document_root=settings.MEDIA_ROOT)

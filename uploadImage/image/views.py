@@ -11,6 +11,22 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.contrib import messages
+from rest_framework.generics import GenericAPIView
+
+from django.http import JsonResponse
+import json
+from django.http import HttpResponse
+from django.core import serializers
+from image.serializers import *
+import time
+
+from rest_framework.parsers import FileUploadParser
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
+
+from .serializers import FileSerializer
+
 #from haystack.query import SearchQuerySet 
 
 # Create your views here.
@@ -159,5 +175,76 @@ def home(request):
 	return render(request,"home.html")
 
 
+class hotelViewsets(GenericAPIView):
+
+	def post(self, request):
+		response={}
+		hotelID=''
+		data=request.POST
+		print(request.FILES.employee_image)
+		Image_Path =''
+		image_data = request.FILES['employee_image']
+		print(image_data)
+		img_arr = image_data.split(",")
+		img_rs = img_arr[0]
+		img_rs_arr = img_rs.split("/")
+		img_rs_arr = img_rs_arr[1].split(";")
+		imgdata = base64.b64decode(img_arr[1])
+		ext = img_rs_arr[0]
+	
+		millis = str(int(round(time.time() * 1000)))
+		new_image_name = str(123)+'_'+millis
+		other_image = new_image_name+'.'+ext
+
+		if ext == 'jpeg' or ext == 'png':
+			filename = settings.MEDIA_URL+other_image
+			
+			with open(filename, 'wb') as f:
+				f.write(imgdata)
+			# image = Image.open(filename)
+			# print(image)				
+		else:
+			message = "Please upload jpeg or png image."
 
 
+		if filename !='':
+			party_image ={
+				"name":request.POST["name"],
+				"ImagePath":other_image,
+				"pub_date":time.time(),
+			}
+			
+		# party_image_serializer=PartyImageSerializers(data=party_image)
+		# if party_image_serializer.is_valid():					
+		# 	party_image_serializer=party_image_serializer.save()				
+		# 	PARTY_IMAGE_ID=party_image_serializer.pk
+		# 	print(PARTY_IMAGE_ID)
+
+		if request.method == 'POST':
+			# print(request.POST)
+			# print(request.FILES)
+			image_serializer = hotelSerializer(party_image)
+			if image_serializer.is_valid():
+				image_serializer.save()
+				hotelID =image_serializer.pk
+
+		if hotelID:
+			response={"status":1,"message":"Data templates found.","hotelID":hotelID}
+		else:
+			response={"status":0,"message":"Data not found.","hotelID":hotelID}
+
+		return JsonResponse(response,safe=False)
+
+
+class FileUploadView(APIView):
+    parser_class = (FileUploadParser,)
+
+    def post(self, request, *args, **kwargs):
+
+      file_serializer = FileSerializer(data=request.data)
+
+      if file_serializer.is_valid():
+          file_serializer.save()
+          return Response(file_serializer.data, status=status.HTTP_201_CREATED)
+      else:
+          return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
